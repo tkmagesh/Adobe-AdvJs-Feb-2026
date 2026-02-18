@@ -10,11 +10,14 @@ function add(x,y) {
         if (typeof n === 'function') return parseArg(n())
         return isNaN(n) ? 0 : parseInt(n)
     }
-    let result = 0;
-    for (let i = 0; i < arguments.length; i++){
-        result += parseArg(arguments[i])
-    }
-    return result
+
+    /* 
+        let result = 0;
+        for (let i = 0; i < arguments.length; i++){
+            result += parseArg(arguments[i])
+        } 
+    */
+    return parseArg(arr)
 }
 
 test("add(10,20) => 30", () => {

@@ -51,13 +51,28 @@ x = function(){}
 x = []
 ```
 
-# When a function is invoked
+## When a function is invoked
 There are 2 implicit values passed to the function
 - arguments
     - array like object with all the arguments passed to the function
 - this
 
+## Functional
+- In a functional language, functions are NOT mere programming constructs (if, for, switch-case) BUT they can be treated like data (object)
 
+### Function Invocation Patterns
+- It DOES NOT matter **WHERE** a function is OR who **OWNS** the function
+- What matters is **HOW** the function is **INVOKED**
+
+#### 6 different ways of a function
+- As a function
+    - this -> global scope (globalThis), it is 'window' in the browser
+- As a method of an object
+    - `this` -> object 
+- Using the 'call' method of the function
+- Using the 'apply' method of the function
+- Using the 'new' keyword
+- Immediately Invoked Function Expression (IIFE)
 
 
 
