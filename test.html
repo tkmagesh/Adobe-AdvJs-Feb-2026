@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // Service
+        function add(x,y){
+            return x + y
+        }
+
+        // Consumer
+        function onBtnAddClick(){
+            let n1 = document.getElementById('txtN1').value
+            let n2 = document.getElementById('txtN2').value
+            alert(add(parseInt(n1), parseInt(n2)))
+        }
+        function onDocumentLoad(){
+            let btnAdd = document.getElementById('btnAdd');
+            btnAdd.addEventListener('click', onBtnAddClick)
+        }
+        window.addEventListener("DOMContentLoaded", onDocumentLoad)
+    </script>
+</head>
+<body>
+    <input type="number" name="" id="txtN1">
+    <input type="number" name="" id="txtN2">
+    <button id="btnAdd">Add</button>
+</body>
+</html>
