@@ -38,7 +38,24 @@
 - Object Oriented (C++, Java, C#)
 - Functional (Scala, Haskel, F#)
 
+JavaScript = Loosely Typed + Object Based + Functional
 
+```js
+// loosely typed
+let x;
+x = 100
+x = "Esse esse cupidatat labore reprehenderit ea enim anim laboris exercitation ipsum duis."
+x = true
+x = {}
+x = function(){}
+x = []
+```
+
+# When a function is invoked
+There are 2 implicit values passed to the function
+- arguments
+    - array like object with all the arguments passed to the function
+- this
 
 
 
