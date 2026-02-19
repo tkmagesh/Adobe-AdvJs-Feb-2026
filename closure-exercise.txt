@@ -1,0 +1,31 @@
+Create a 'counter' object with the following methods
+    - increment() => return a value incremented by 1
+    - decrement() => return a value decremented by 1
+
+let counter = /* TODO */
+counter.increment() //=> 1
+counter.increment() //=> 2
+counter.increment() //=> 3
+counter.increment() //=> 4
+
+counter.decrement() //=> 3
+counter.decrement() //=> 2
+counter.decrement() //=> 1
+counter.decrement() //=> 0
+counter.decrement() //=> -1
+
+IMPORTANT NOTE:
+    There should be NO OTHER WAY to influence the outcome
+    the following should NOT be possible
+    1.
+    window.count = 10000
+    counter.increment() => 10001 (SHOULD NOT BE POSSIBLE)
+
+    2. 
+    counter.count = 10000
+    counter.increment() => 10001 (SHOULD NOT BE POSSIBLE)
+
+
+function add(x,y){
+    return x + y
+}

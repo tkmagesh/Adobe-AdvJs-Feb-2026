@@ -5,18 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Click Tracker</title>
     <script>
+        let globalVar = 999;
         (function myApp(){
             let clickCount = 0
-            function onBtnTrackClick(){
+            function onBtnTrackClick(){ // maintains the closures
+                let localVar = 100
                 clickCount += 1
                 document.getElementById('divCount').innerText = clickCount
             }
             function onDocumentLoad(){
                 let btnTrack = document.getElementById('btnTrack')
-                btnTrack.addEventListener('click', onBtnTrackClick)
+                btnTrack.addEventListener('click', onBtnTrackClick) // closure is created
             }
             window.addEventListener('DOMContentLoaded', onDocumentLoad)
         })()
+
+         /*
+            Step - 1 => 8
+            Step - 2 => 9
+            Step - 3 => 10
+            Step - 4 => 11
+            Step - 5 => 16
+        */
     </script>
 </head>
 <body>
