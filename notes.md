@@ -54,7 +54,7 @@ x = []
 ## When a function is invoked
 There are 2 implicit values passed to the function
 - arguments
-    - array like object with all the arguments passed to the function
+    - array **like** object with all the arguments passed to the function
 - this
 
 ## Functional
