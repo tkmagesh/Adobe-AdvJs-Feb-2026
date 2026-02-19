@@ -118,7 +118,11 @@ There are 2 implicit values passed to the function
     The Result : 
 
         The lifetime of the variable is also extended along with the Inner Function
-        
+
         The variables is accessible ONLY through the inner function and thus behaving like a 'private' state
+
+## Async Programming
+### Async Operation
+- An operation that is initiated but not waited for its completion (the operation will complete sometime in future)
 
 
