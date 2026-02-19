@@ -19,21 +19,23 @@
 
     // async
     // service
-    function addAsync(x,y){
+    function addAsync(x,y, cbFn){
         console.log(`   [@service] processing ${x} and ${y}`)
         setTimeout(() => {
+            // will execute after 4000 ms
             let result = x + y;
             console.log(`   [@service] returning result`);
-            return result;
+            cbFn(result);
         }, 4000);
-        
+        // control returns immediately
     }
 
     // consumer
     function addAsyncClient(x,y){
         console.log(`[@consumer] triggering the operation`)
-        let result = addAsync(x,y)
-        console.log(`[@consumer] result = ${result}`);
+        addAsync(x, y, function (result) {
+          console.log(`[@consumer] result = ${result}`);
+        });
     }
 
     window['addAsyncClient'] = addAsyncClient;
