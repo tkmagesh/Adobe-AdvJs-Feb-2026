@@ -56,6 +56,7 @@ There are 2 implicit values passed to the function
 - arguments
     - array **like** object with all the arguments passed to the function
 - this
+    - invocation context
 
 ## Functional
 - In a functional language, functions are NOT mere programming constructs (if, for, switch-case) BUT they can be treated like data (object)
@@ -71,8 +72,31 @@ There are 2 implicit values passed to the function
     - `this` -> object 
 - Using the 'call' method of the function
 - Using the 'apply' method of the function
-- Using the 'new' keyword
+- Using the 'new' keyword (typically contructor functions)
+    - `this` => new object
+    - `this` => returned by default
+    ```js
+        function Employee(id, name, salary){
+            // `this` => new object
+            this.id = id;
+            this.name = name;
+            this.salary = salary;
+            // `this` => returned by default
+        }
+            
+        
+        let emp = new Employee(100, 'Magesh', 10000)
+        console.log(emp)
+        console.log(emp.constructor)
+        console.log(emp instanceof Employee)
+        console.log(emp.constructor === Employee)
+    ```
 - Immediately Invoked Function Expression (IIFE)
+
+### Inheritance
+- `prototypal` inheritance
+
+![image](./images/prototypal-inheritance.png)
 
 
 
