@@ -26,6 +26,26 @@ IMPORTANT NOTE:
     counter.increment() => 10001 (SHOULD NOT BE POSSIBLE)
 
 
-function add(x,y){
-    return x + y
-}
+let counter = (function (){
+    let count = 0
+    function increment(){
+        return ++count;
+    }
+    function decrement(){
+        return --count
+    }
+    let counter = { increment, decrement }
+    return counter
+})()
+
+let counter = (function (){
+    let count = 0
+    return { 
+        increment : function(){
+            return ++count;
+        }, 
+        decrement : function(){
+            return --count
+        } 
+    }
+})()
