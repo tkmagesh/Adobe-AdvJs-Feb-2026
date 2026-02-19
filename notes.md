@@ -114,8 +114,11 @@ There are 2 implicit values passed to the function
 3. Create an Inner Function (IF)
 4. Refer the variable (V) declared in the Outer Function (OF) in the Inner Function (IF)
 5. Extend the lifetime of the Inner Function beyond the lifetime of the Outer Funnction
+
     The Result : 
+
         The lifetime of the variable is also extended along with the Inner Function
+        
         The variables is accessible ONLY through the inner function and thus behaving like a 'private' state
 
 
