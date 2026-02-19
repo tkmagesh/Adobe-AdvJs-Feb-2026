@@ -92,6 +92,12 @@ There are 2 implicit values passed to the function
         console.log(emp.constructor === Employee)
     ```
 - Immediately Invoked Function Expression (IIFE)
+    ```js
+        (function(){
+            console.log('fn invoked')
+        })()
+        // function is created, executed and destroyed (use and through)
+    ```
 
 ### Inheritance
 - `prototypal` inheritance

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Tracker</title>
+    <script>
+        (function myApp(){
+            let clickCount = 0
+            function onBtnTrackClick(){
+                clickCount += 1
+                document.getElementById('divCount').innerText = clickCount
+            }
+            function onDocumentLoad(){
+                let btnTrack = document.getElementById('btnTrack')
+                btnTrack.addEventListener('click', onBtnTrackClick)
+            }
+            window.addEventListener('DOMContentLoaded', onDocumentLoad)
+        })()
+    </script>
+</head>
+<body>
+    <button id="btnTrack">Click Me</button>
+    <div id="divCount">[0]</div>
+</body>
+</html>
