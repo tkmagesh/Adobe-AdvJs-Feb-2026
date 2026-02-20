@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Loop</title>
+    <title>Worker</title>
     <script>
         (() => {
-            function doWork(){
-                for(let i = 0; i < 10000; i++)
-                    for(let j = 0; j < 4000; j++)
-                        for(let k = 0; k < 1000; k++){
-
-                        }
-            }
+            let worker = new Worker('work-script.js');
+            worker.addEventListener('message', (evt) => {
+                if (evt.data.type === 'PROGRESS'){
+                    document.getElementById('workProgress').value = evt.data.percentCompleted
+                }
+                if (evt.data.type === 'COMPLETE'){
+                    displayMessage('Work Completd...!')
+                }
+            })
             function onBtnDoWorkClick(){
                 displayMessage("Work Started...!") // update the dom, But no repainting
-                setTimeout(function(){
-                    doWork();
-                    displayMessage("Work Completed...!") // update the dom, But no repainting
-                })
+                worker.postMessage({type : 'START'})
             }
             function displayMessage(msg){
                 console.log(msg)
@@ -34,7 +33,10 @@
 </head>
 <body>
     <input type="text" name="" id="">
+    <br>
     <button id="btnDoWork">Do Work</button>
+    <br>
+    <progress id="workProgress" value="0" min="0" max="100"></progress>
     <div id="divMessages"></div>
 </body>
 </html>

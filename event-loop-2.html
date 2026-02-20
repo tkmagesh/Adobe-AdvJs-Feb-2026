@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Loop</title>
+    <script>
+        (() => {
+            function doWork(onProgress, onComplete){
+                let microWorkCount = 1000
+                let currentMicroWork = 1
+                function oneMicroWork(){
+                    for(let i = 0; i < (10000/microWorkCount); i++)
+                        for(let j = 0; j < 4000; j++)
+                            for(let k = 0; k < 1000; k++){
+
+                            }
+                    currentMicroWork++
+                    if (currentMicroWork % 10 === 0){
+                        let percentCompleted = (currentMicroWork/microWorkCount) * 100
+                        onProgress(percentCompleted)
+                    }
+                    if (currentMicroWork <= 1000) {
+                        setTimeout(oneMicroWork)
+                        return;
+                    }
+                    onComplete()
+                }
+                setTimeout(oneMicroWork)
+            }
+            function onBtnDoWorkClick(){
+                displayMessage("Work Started...!") // update the dom, But no repainting
+                doWork(
+                    (percentCompleted) => document.getElementById('workProgress').value = percentCompleted,
+                    () => displayMessage('Work Completd...!')
+                )
+            }
+            function displayMessage(msg){
+                console.log(msg)
+                document.getElementById('divMessages').innerHTML += msg + '<br/>';
+            }
+            function onDocumentLoad(){
+                let btnDoWork = document.getElementById('btnDoWork');
+                btnDoWork.addEventListener('click', onBtnDoWorkClick);
+            }
+            window.addEventListener('DOMContentLoaded', onDocumentLoad)
+        })()
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="">
+    <br>
+    <button id="btnDoWork">Do Work</button>
+    <br>
+    <progress id="workProgress" value="0" min="0" max="100"></progress>
+    <div id="divMessages"></div>
+</body>
+</html>
