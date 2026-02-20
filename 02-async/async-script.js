@@ -43,11 +43,11 @@
   // async (promise)
   // service
   function addAsyncPromise(x, y) {
-    console.log(`   [@service] processing ${x} and ${y}`);
+    console.log(`   [@service - add] processing ${x} and ${y}`);
     let p = new Promise(function (resolve, reject) {
       setTimeout(() => {
         let result = x + y;
-        console.log(`   [@service] returning result`);
+        console.log(`   [@service - add] returning result`);
         resolve(result); // communicating the result to the 'promise'
       }, 4000);
     });
@@ -80,18 +80,44 @@
   // For promise chaining
   // service
   function divideAsyncPromise(x, y) {
-    console.log(`   [@service] processing ${x} and ${y}`);
+    console.log(`   [@service - divide] processing ${x} and ${y}`);
     let p = new Promise(function (resolve, reject) {
       setTimeout(() => {
+        if (y === 0) {
+          reject(new Error("divisor cannot be 0"));
+          return;
+        }
         let result = x / y;
-        console.log(`   [@service] returning result`);
+        console.log(`   [@service - divide] returning result`);
         resolve(result); // communicating the result to the 'promise'
-      }, 4000);
+      }, 2000);
     });
     return p;
   }
 
   window["divideAsyncPromise"] = divideAsyncPromise;
+
+  // parallel 
+  async function addAndDivideClient(){
+    let addPromise = addAsyncPromise(100,200);
+    let dividePromise = divideAsyncPromise(100,20);
+    // promise synchronization
+    let resultsPromise = Promise.all([addPromise, dividePromise]);
+    /* 
+    resultsPromise.then(function([addResult, divideResult]){
+      console.log(`addResult : ${addResult}`);
+      console.log(`divideResult : ${divideResult}`);
+    })
+    */
+    let [addResult, divideResult] = await resultsPromise;
+    console.log(`addResult : ${addResult}`);
+    console.log(`divideResult : ${divideResult}`);
+
+    // this will be wrapped in a promise and returned
+    return addResult * divideResult
+  }
+
+  window["addAndDivideClient"] = addAndDivideClient;
 })();
 
 // async chaining
@@ -163,3 +189,24 @@ let divideResult = await divideAsyncPromise(addResult, 5);
 console.log(`divideResult : ${divideResult}`); 
 */
 
+// Handling promise rejections
+// Option-1
+/* 
+let p = divideAsyncPromise(100, 10);
+p.then(function (divideResult) {
+  console.log(`divideResult : ${divideResult}`);
+}).catch(function (err) {
+  console.log(`divide operation unsuccessfull, error : ${err}`);
+}); 
+*/
+
+// Option-2 (using async await)
+// simple try-catch will do
+/* 
+try {
+  let divideResult = await divideAsyncPromise(100, 0);
+  console.log(`divideResult : ${divideResult}`);
+} catch (err) {
+  console.log(`divide operation unsuccessfull, error : ${err}`);
+} 
+*/
