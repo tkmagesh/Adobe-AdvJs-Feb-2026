@@ -97,8 +97,22 @@
 
   window["divideAsyncPromise"] = divideAsyncPromise;
 
-  // parallel 
-  async function addAndDivideClient(){
+  // parallel invocation (no synchronization)
+  function addAndDivideClient1() {
+    let addPromise = addAsyncPromise(100, 200);
+    addPromise.then((addResult) => {
+      console.log(`addResult : ${addResult}`);
+    });
+    let dividePromise = divideAsyncPromise(100, 20);
+    dividePromise.then((divideResult) => {
+      console.log(`divideResult : ${divideResult}`);
+    });
+  }
+
+  window["addAndDivideClient1"] = addAndDivideClient1;
+
+  // parallel invocation & synchronization
+  async function addAndDivideClient2(){
     let addPromise = addAsyncPromise(100,200);
     let dividePromise = divideAsyncPromise(100,20);
     // promise synchronization
@@ -117,7 +131,7 @@
     return addResult * divideResult
   }
 
-  window["addAndDivideClient"] = addAndDivideClient;
+  window["addAndDivideClient2"] = addAndDivideClient2;
 })();
 
 // async chaining
