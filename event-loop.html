@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Loop</title>
+    <script>
+        (() => {
+            function doWork(){
+                for(let i = 0; i < 10000; i++)
+                    for(let j = 0; j < 2000; j++)
+                        for(let k = 0; k < 1000; k++){
+
+                        }
+            }
+            function onBtnDoWorkClick(){
+                displayMessage("Work Started...!") // update the dom, But no repainting
+                setTimeout(function(){
+                    doWork();
+                    displayMessage("Work Completed...!") // update the dom, But no repainting
+                })
+            }
+            function displayMessage(msg){
+                console.log(msg)
+                document.getElementById('divMessages').innerHTML += msg + '<br/>';
+            }
+            function onDocumentLoad(){
+                let btnDoWork = document.getElementById('btnDoWork');
+                btnDoWork.addEventListener('click', onBtnDoWorkClick);
+            }
+            window.addEventListener('DOMContentLoaded', onDocumentLoad)
+        })()
+    </script>
+</head>
+<body>
+    <button id="btnDoWork">Do Work</button>
+    <div id="divMessages"></div>
+</body>
+</html>
